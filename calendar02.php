@@ -91,6 +91,13 @@
             font-weight: bold;
             margin: -1px 0 0 -px;
         }
+        #calender .tr div {
+    /* ... 你原本的設定 ... */
+
+    box-sizing: border-box;  /* 1. 關鍵：確保邊框不會撐開寬度 */
+    margin-right: -1px;      /* 2. 關鍵：讓左右邊框重疊，消除間距 */
+    margin-bottom: -1px;     /* 3. 關鍵：讓上下邊框重疊，確保對齊 */
+}
 
     </style>
 
@@ -106,54 +113,29 @@
             <div>六</div>
         </div>
 
-    <?php
-    // for($i = 0; $i < $TotalWeeks; $i++){
-    //     echo "<div  class='tr'>";
-    //     for($j = 0; $j < 7; $j++){
-    //         $DayNumber = ($i * 7 + $j) - ($FirstDayWeek - 1);
+      <?php
+    for($i = 0; $i < $TotalWeeks; $i++){
+        echo "<div  class='tr'>";
+        for($j = 0; $j < 7; $j++){
+            $DayNumber = ($i * 7 + $j) - ($FirstDayWeek - 1);
 
-    //         if($DayNumber > 0 && $DayNumber <= $MonthDays){
-    //             $date=date("Y-m-$DayNumber");
-    //             if($date=='2026-05-16'){
-    //             echo "<div data-date='$date' style='background:skyblue;font-weight:bold'>";
-            
-    //             }else{
-    //                 echo "<div data-date='$date'>";
-        
-    //     echo date("d", strtotime($date));
-    //     echo "</div>";
-    //     }
-    // else{
-    //     echo "<div> &nbsp;</div>";
-        
-    // }
-    // echo "</div>";
-    // }
-    // ?>
-
-
-for($i=0;$i<$TotalWeeks;$i++){
-        echo "<div class='tr'>";
-        for($j=0;$j<7;$j++){
-
-            $DayNumber=($i*7+$j)-($FirstDayWeek-1);
-            if($DayNumber>0 && $DayNumber<=$MonthDays){
+            if($DayNumber > 0 && $DayNumber <= $MonthDays){
                 $date=date("Y-m-$DayNumber");
                 if($date=='2026-05-16'){
-                    echo "<div data-date='$date' style='background:skyblue;font-weight:bolder'>";
-
+                echo "<div data-date='$date' style='background:skyblue;font-weight:bold'>";
+            
                 }else{
-                    echo "<div data-date='$date'>";
-                }
-                    
-                echo date("d",strtotime($date));
-                echo "</div>";
-            }else{
-                echo "<div>&nbsp;</div>";
-            }
-        }
+                    echo "<div data-date='$date'>";}
+        
+        echo date("d", strtotime($date));
         echo "</div>";
+        
+    }else
+        echo "<div> &nbsp;</div>";
+        
+       } 
+    echo "</div>";
     }
-    </div>
+    ?>
 </body>
 </html>
